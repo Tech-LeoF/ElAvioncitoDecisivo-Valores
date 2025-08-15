@@ -3,24 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>El Avioncito Decisivo</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-    :root { --font-base: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
-    html, body { font-family: var(--font-base); }
-    h1 { font-weight: 600; }
-    p  { font-weight: 400; }
-    small { font-weight: 300; }
-</style>
+        :root { --font-base: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+        html, body { font-family: var(--font-base); }
+        h1 { font-weight: 600; }
+        p  { font-weight: 400; }
+        small { font-weight: 300; }
+    </style>
 </head>
 <body>
 
     <img class="w-full" src="Imgs/Plane.png" alt="">
 
-    <div class="flex flex-row cursor-pointer">
-        
+    <div class="absolute flex flex-row cursor-pointer -mt-[448px] ml-[440px] space-x-2">
+        <a href="#" data-text="Soy Flork, Si me arrojan, mi cerveza se derramará y causará una tragedia global… literalmente.">
+            <img class="w-16 h-16" src="Imgs/Flork.png" alt="">
+        </a>
+        <a href="#" data-text="Soy Jake, Si me pierden, ¡nadie podrá usar mis poderes para alcanzar las galletas del estante más alto!">
+            <img class="w-16 h-16" src="Imgs/Jake.png" alt="">
+        </a>
+        <a href="#" data-text="Soy El Reaper, Si me arrojan, nadie podrá asustar a los que dejan los platos sucios en el fregadero.">
+            <img class="w-16 h-16" src="Imgs/The reaper.png" alt="">
+        </a>
+        <a href="#" data-text="Soy Cartman, ¡Si me tiran, perderán el suministro de cheeseburgers secretas que guardo!">
+            <img class="w-16 h-16" src="Imgs/CartMan.png" alt="">
+        </a>
+        <a href="#" data-text="Este es Rigby, Si me eliminan, ¡nadie más podrá ver mis épicas peleas con Mordecai en slow-motion!">
+            <img class="w-16 h-16" src="Imgs/Rigby.webp" alt="">
+        </a>
     </div>
-    
+
+    <div id="tooltip" class="absolute bg-black text-white px-3 py-1 rounded-md text-sm hidden pointer-events-none whitespace-nowrap z-[100]"></div>
+
+    <script>
+        const tooltip = document.getElementById('tooltip');
+
+        document.querySelectorAll('a[data-text]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const text = a.getAttribute('data-text');
+                const rect = a.getBoundingClientRect();
+
+                tooltip.textContent = text;
+                tooltip.classList.remove('hidden');
+
+                const tooltipWidth = tooltip.offsetWidth;
+                const left = rect.left + window.scrollX + rect.width / 2 - tooltipWidth / 2;
+                const top = rect.top + window.scrollY - tooltip.offsetHeight - 8;
+
+                tooltip.style.left = `${left}px`;
+                tooltip.style.top = `${top}px`;
+
+                clearTimeout(tooltip.hideTimeout);
+                tooltip.hideTimeout = setTimeout(() => {
+                    tooltip.classList.add('hidden');
+                }, 2000);
+            });
+        });
+    </script>
 </body>
 </html>
