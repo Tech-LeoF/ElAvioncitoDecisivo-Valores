@@ -23,9 +23,14 @@
             <p class="text-4xl text-[#F0F0F2]">El Avioncito Decisivo</p>
         </div>
         <div>
-            <button class="w-17 h-10 bg-[#A67A44] rounded-lg cursor-pointer text-[#F0F0F2] hover:drop-shadow-[0_0_4px_gray] transition duration-400">Start</button>
+            <button id="startButton" class="w-17 h-10 bg-[#A67A44] rounded-lg cursor-pointer text-[#F0F0F2] hover:drop-shadow-[0_0_4px_gray] transition duration-400">Start</button>
+
         </div>
     </div>
-    
+    <script>
+  document.getElementById("startButton").addEventListener("click", function() {
+    window.location.href = "segunda_pagina.html"; // Cambia esto por tu archivo real
+  });
+</script>
 </body>
 </html>
