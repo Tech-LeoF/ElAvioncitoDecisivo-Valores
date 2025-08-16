@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Resultado del Sacrificio</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="flex items-center justify-center h-screen bg-gray-100">
+    <img class="w-full" src="Imgs/sorprendido-conmocionado-asustado-o-asombrado-emoji-emoticon-ojos-salvajes-que-salen_1303870-1163.avif" alt="">
+<div class="absolute bg-white shadow-lg rounded-xl p-6 text-center space-y-4">
+    <h1 class="text-2xl font-bold text-red-600 mb-4">El elegido ha sido...</h1>
+    <p id="resultado" class="text-xl text-gray-700"></p>
+    <button class = "px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition">Continuar</button>
+</div>
+
+<script>
+    // Obtener parámetro de la URL
+    const params = new URLSearchParams(window.location.search);
+    const sacrificio = params.get("sacrificio");
+
+    if (sacrificio) {
+    document.getElementById("resultado").textContent = sacrificio;
+    } else {
+    document.getElementById("resultado").textContent = "Nadie fue elegido 😱";
+    }
+</script>
+</body>
+</html>

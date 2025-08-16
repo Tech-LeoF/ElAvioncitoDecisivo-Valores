@@ -1,68 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El Avioncito Decisivo</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        :root { --font-base: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
-        html, body { font-family: var(--font-base); }
-        h1 { font-weight: 600; }
-        p  { font-weight: 400; }
-        small { font-weight: 300; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Avioncito Decisivo</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --font-base: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+    html, body { font-family: var(--font-base); }
+</style>
 </head>
-<body>
+<body class="relative">
 
-    <img class="w-full" src="Imgs/Plane.png" alt="">
+<!-- Imagen principal -->
+<img class="w-full" src="Imgs/Plane.png" alt="">
 
-    <div class="absolute flex flex-row cursor-pointer -mt-[448px] ml-[440px] space-x-2">
-        <a href="#" data-text="Soy Flork, Si me arrojan, mi cerveza se derramará y causará una tragedia global… literalmente.">
-            <img class="w-16 h-16" src="Imgs/Flork.png" alt="">
-        </a>
-        <a href="#" data-text="Soy Jake, Si me pierden, ¡nadie podrá usar mis poderes para alcanzar las galletas del estante más alto!">
-            <img class="w-16 h-16" src="Imgs/Jake.png" alt="">
-        </a>
-        <a href="#" data-text="Soy El Reaper, Si me arrojan, nadie podrá asustar a los que dejan los platos sucios en el fregadero.">
-            <img class="w-16 h-16" src="Imgs/The reaper.png" alt="">
-        </a>
-        <a href="#" data-text="Soy Cartman, ¡Si me tiran, perderán el suministro de cheeseburgers secretas que guardo!">
-            <img class="w-16 h-16" src="Imgs/CartMan.png" alt="">
-        </a>
-        <a href="#" data-text="Este es Rigby, Si me eliminan, ¡nadie más podrá ver mis épicas peleas con Mordecai en slow-motion!">
-            <img class="w-16 h-16" src="Imgs/Rigby.webp" alt="">
-        </a>
+<!-- Personajes clickeables -->
+<div class="absolute flex flex-row cursor-pointer -mt-[448px] ml-[440px] space-x-2">
+    <a href="#" data-name="Flork" data-text="Soy Flork, Si me arrojan, mi cerveza se derramará y causará una tragedia global… literalmente.">
+    <img class="char w-16 h-16" src="Imgs/Flork.png" alt="">
+    </a>
+    <a href="#" data-name="Jake" data-text="Soy Jake, Si me pierden, ¡nadie podrá usar mis poderes para alcanzar las galletas del estante más alto!">
+    <img class="char w-16 h-16" src="Imgs/Jake.png" alt="">
+    </a>
+    <a href="#" data-name="El Reaper" data-text="Soy El Reaper, Si me arrojan, nadie podrá asustar a los que dejan los platos sucios en el fregadero.">
+    <img class="char w-16 h-16" src="Imgs/The reaper.png" alt="">
+    </a>
+    <a href="#" data-name="Cartman" data-text="Soy Cartman, ¡Si me tiran, perderán el suministro de cheeseburgers secretas que guardo!">
+    <img class="char w-16 h-16" src="Imgs/CartMan.png" alt="">
+    </a>
+    <a href="#" data-name="Rigby" data-text="Este es Rigby, Si me eliminan, ¡nadie más podrá ver mis épicas peleas con Mordecai en slow-motion!">
+    <img class="char w-16 h-16" src="Imgs/Rigby.webp" alt="">
+    </a>
+</div>
+
+<!-- Tooltip -->
+<div id="tooltip" class="absolute bg-black text-white px-3 py-1 rounded-md text-sm hidden pointer-events-none whitespace-nowrap z-[100]"></div>
+
+<!-- Overlay -->
+<div id="overlay" class="fixed inset-0 bg-black/70 hidden items-center justify-center z-50">
+    <div class="relative bg-white rounded-2xl shadow-xl p-6 max-w-md w-[90%] text-center space-y-4">
+    <h3 class="text-lg font-semibold">¡HORA DE ELEGIR EL SACRIFICIO!</h3>
+    <p class="text-gray-600">Tienes <span id="timer">00:30</span> segundos para elegir a uno.</p>
+    
+    <!-- Botones de elección -->
+    <div id="choices" class="flex flex-wrap justify-center gap-2"></div>
+    
+    <button id="cerrar" class="mt-4 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition">
+        Cancelar
+    </button>
     </div>
+</div>
 
-    <div id="tooltip" class="absolute bg-black text-white px-3 py-1 rounded-md text-sm hidden pointer-events-none whitespace-nowrap z-[100]"></div>
+<script>
+    const tooltip = document.getElementById('tooltip');
+    const overlay = document.getElementById('overlay');
+    const cerrar = document.getElementById('cerrar');
+    const personajes = document.querySelectorAll('.char');
+    const choicesDiv = document.getElementById('choices');
+    const timerElement = document.getElementById("timer");
 
-    <script>
-        const tooltip = document.getElementById('tooltip');
+    let clickeados = new Set();
+    let countdown;
+    let time;
 
-        document.querySelectorAll('a[data-text]').forEach(a => {
-            a.addEventListener('click', e => {
-                e.preventDefault();
-                const text = a.getAttribute('data-text');
-                const rect = a.getBoundingClientRect();
+    // Tooltip + contador de clickeados
+    personajes.forEach((img, index) => {
+    img.parentElement.addEventListener('click', e => {
+        e.preventDefault();
 
-                tooltip.textContent = text;
-                tooltip.classList.remove('hidden');
+        // Mostrar tooltip
+        const text = img.parentElement.getAttribute('data-text');
+        const rect = img.getBoundingClientRect();
 
-                const tooltipWidth = tooltip.offsetWidth;
-                const left = rect.left + window.scrollX + rect.width / 2 - tooltipWidth / 2;
-                const top = rect.top + window.scrollY - tooltip.offsetHeight - 8;
+        tooltip.textContent = text;
+        tooltip.classList.remove('hidden');
 
-                tooltip.style.left = `${left}px`;
-                tooltip.style.top = `${top}px`;
+        const tooltipWidth = tooltip.offsetWidth;
+        const left = rect.left + window.scrollX + rect.width / 2 - tooltipWidth / 2;
+        const top = rect.top + window.scrollY - tooltip.offsetHeight - 8;
 
-                clearTimeout(tooltip.hideTimeout);
-                tooltip.hideTimeout = setTimeout(() => {
-                    tooltip.classList.add('hidden');
-                }, 2000);
-            });
-        });
-    </script>
+        tooltip.style.left = `${left}px`;
+        tooltip.style.top = `${top}px`;
+
+        clearTimeout(tooltip.hideTimeout);
+        tooltip.hideTimeout = setTimeout(() => {
+        tooltip.classList.add('hidden');
+        }, 2000);
+
+        // Guardar click
+        clickeados.add(index);
+        img.classList.add("ring-4", "ring-green-500");
+
+        // Si ya clickeó todos, mostrar overlay con timer
+        if (clickeados.size === personajes.length) {
+        mostrarOverlay();
+        }
+    });
+    });
+
+    function mostrarOverlay() {
+      // Generar botones para elegir personajes
+    choicesDiv.innerHTML = "";
+    personajes.forEach(img => {
+        const name = img.parentElement.getAttribute("data-name");
+        const btn = document.createElement("button");
+        btn.textContent = name;
+        btn.className = "px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition";
+        btn.addEventListener("click", () => elegirSacrificio(name));
+        choicesDiv.appendChild(btn);
+    });
+
+    overlay.classList.remove("hidden");
+    overlay.classList.add("flex");
+
+      // Iniciar contador
+    iniciarTimer();
+    }
+
+    function iniciarTimer() {
+    time = 30;
+    timerElement.textContent = "00:30";
+    clearInterval(countdown);
+    countdown = setInterval(() => {
+        time--;
+        const minutes = String(Math.floor(time / 60)).padStart(2, "0");
+        const seconds = String(time % 60).padStart(2, "0");
+        timerElement.textContent = `${minutes}:${seconds}`;
+
+        if (time <= 0) {
+        clearInterval(countdown);
+        timerElement.textContent = "00:00";
+        alert("¡Se acabó el tiempo!");
+        resetJuego();
+        }
+    }, 1000);
+    }
+
+    function elegirSacrificio(name) {
+    clearInterval(countdown);
+    alert(`Has elegido sacrificar a ${name} 🪂`);
+      localStorage.setItem("sacrificio", name); // guardar elección
+    resetJuego();
+    }
+
+    function resetJuego() {
+    overlay.classList.remove("flex");
+    overlay.classList.add("hidden");
+    clickeados.clear();
+    personajes.forEach(img => {
+        img.classList.remove("ring-4", "ring-green-500");
+    });
+    }
+
+    // Botón cerrar modal
+    cerrar.addEventListener("click", () => {
+    clearInterval(countdown);
+    resetJuego();
+    });
+
+    // Cerrar modal clickeando afuera
+    overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) {
+        clearInterval(countdown);
+        resetJuego();
+    }
+
+    window.location.href = `resultado.html?sacrificio=${encodeURIComponent(name)}`;
+
+    });
+</script>
 </body>
 </html>
