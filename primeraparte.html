@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nueva Página</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-base: 'Poppins', sans-serif;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-base);
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body class="relative h-screen w-screen overflow-hidden">
+
+  
+  <img src="freddy-arturo-fondo-de-pantalla-chevere.jpg" alt="Fondo" class="absolute top-0 left-0 w-full h-full object-cover z-0">
+
+  
+<div class="absolute top-20 left-1/2 transform -translate-x-1/2 w-full max-w-6xl px-6 z-20">
+  <p class="bg-black/60 text-white text-lg md:text-xl font-medium p-6 rounded-lg shadow-lg text-center">
+    El avión acaba de estrellarse en una tierra deshabitada y está a punto de explotar en pocos minutos. Dentro del avión hay varios objetos útiles, pero solo puedes rescatar 4 antes de que sea demasiado tarde. Elige con sabiduría.
+  </p>
+</div>
+
+
+<div class="absolute bottom-5 right-5 z-20">
+  <button onclick="location.href='segunda_pagina.html'" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold text-lg py-3 px-6 rounded-lg shadow-lg transition duration-300">
+    Continuar
+  </button>
+</div>
+
+<div class="absolute top-5 left-5 z-20">
+  <button onclick="history.back()" class="bg-gray-700 hover:bg-gray-800 text-white font-semibold text-lg py-2 px-5 rounded-lg shadow-md transition duration-300">
+    Volver
+  </button>
+</div>
+
+</body>
+</html>

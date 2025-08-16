@@ -17,7 +17,7 @@
       height: 100%;
     }
 
-    /* Animación de zoom */
+    
     .zoom-on-click {
       animation: zoomClick 0.2s ease-in-out;
     }
@@ -32,21 +32,21 @@
 
 <body class="relative h-screen w-screen overflow-hidden">
 
-  <!-- Imagen de fondo -->
+  
   <img src="freddy-arturo-fondo-de-pantalla-chevere.jpg" alt="Fondo" class="absolute top-0 left-0 w-full h-full object-cover z-0">
 
-  <!-- Título -->
+ 
   <div class="absolute top-5 left-1/2 transform -translate-x-1/2 z-20">
     <h1 class="text-white text-3xl font-semibold bg-black/50 px-6 py-3 rounded-lg shadow-md">
-      Escoge 5 objetos para sobrevivir
+      Escoge 4 objetos para sobrevivir
     </h1>
   </div>
 
-  <!-- Botones en panal -->
+  
   <div class="absolute inset-0 flex items-start justify-center pt-32 z-10">
     <div class="grid grid-cols-3 gap-6">
 
-      <!-- Cambié el contenedor de flex-col a flex-row con gap para que imagen aparezca al lado -->
+      
       <div class="flex items-center gap-4">
         <button data-img="https://tse2.mm.bing.net/th/id/OIP.IvgySrsWkxKfGFHsW2p1dwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" class="btn w-40 h-24 bg-white shadow-lg border border-gray-300 rounded-md text-lg font-semibold hover:shadow-2xl transition duration-300">12 botellas con agua</button>
       </div>
@@ -64,11 +64,11 @@
       </div>
 
       <div class="flex items-center gap-4">
-        <button data-img="https://img.freepik.com/vector-premium/coleccion-dibujos-animados-ilustracion-sueter_488586-93.jpg" class="btn w-40 h-24 bg-white shadow-lg border border-gray-300 rounded-md text-lg font-semibold hover:shadow-2xl transition duration-300">Sueters</button>
+        <button data-img="https://img.freepik.com/vector-premium/coleccion-dibujos-animados-ilustracion-sueter_488586-93.jpg" class="btn w-40 h-24 bg-white shadow-lg border border-gray-300 rounded-md text-lg font-semibold hover:shadow-2xl transition duration-300">Suéteres</button>
       </div>
 
       <div class="flex items-center gap-4">
-        <button data-img="https://tse4.mm.bing.net/th/id/OIP.AibwFty_hzYTeP1A_L28VAHaE8?w=960&h=640&rs=1&pid=ImgDetMain&o=7&rm=3" class="btn w-40 h-24 bg-white shadow-lg border border-gray-300 rounded-md text-lg font-semibold hover:shadow-2xl transition duration-300">Spray anti insectos</button>
+        <button data-img="https://tse4.mm.bing.net/th/id/OIP.AibwFty_hzYTeP1A_L28VAHaE8?w=960&h=640&rs=1&pid=ImgDetMain&o=7&rm=3" class="btn w-40 h-24 bg-white shadow-lg border border-gray-300 rounded-md text-lg font-semibold hover:shadow-2xl transition duration-300">Spray antiinsectos</button>
       </div>
 
       <div class="flex items-center gap-4">
@@ -94,14 +94,14 @@
     </div>
   </div>
 
-  <!-- Temporizador -->
+  
   <div class="absolute top-5 right-5 z-20 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-md shadow-lg text-black text-xl font-semibold">
     Tiempo restante: <span id="timer">00:30</span>
   </div>
 
-  <!-- Scripts -->
+  
 <script>
-  // Temporizador
+  
   let time = 30;
   const timerElement = document.getElementById("timer");
 
@@ -118,12 +118,12 @@
     }
   }, 1000);
 
-  // Zoom + mostrar/ocultar imagen al hacer clic
+  
   const buttons = document.querySelectorAll(".btn");
 
   buttons.forEach(button => {
     button.addEventListener("click", () => {
-      // Animación de zoom
+    
       button.classList.add("zoom-on-click");
       setTimeout(() => {
         button.classList.remove("zoom-on-click");
@@ -133,21 +133,33 @@
       let img = container.querySelector("img");
 
       if (img) {
-        // Si ya hay imagen, eliminarla
+       
         img.remove();
       } else {
-        // Si no hay imagen, crearla
+        
         const imgUrl = button.getAttribute("data-img");
         img = document.createElement("img");
         img.src = imgUrl;
         img.alt = "Objeto";
-        // Cambié mt-2 (margen arriba) por ml-4 (margen izquierda) para separar la imagen del botón horizontalmente
+        
         img.className = "ml-4 w-16 h-16 object-contain rounded shadow-md";
         container.appendChild(img);
       }
     });
   });
 </script>
+
+<div class="absolute bottom-5 right-5 z-20">
+  <button class="bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold py-3 px-6 rounded-lg shadow-lg transition duration-300">
+    Continuar
+  </button>
+</div>
+
+<div class="absolute top-5 left-5 z-20">
+  <button onclick="history.back()" class="bg-gray-700 hover:bg-gray-800 text-white font-semibold text-lg py-2 px-5 rounded-lg shadow-md transition duration-300">
+    Volver
+  </button>
+</div>
 
 </body>
 </html>
