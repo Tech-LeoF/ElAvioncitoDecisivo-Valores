@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Objetos Seleccionados</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-poppins min-h-screen flex items-center justify-center">
+
+  <div class="bg-white rounded-xl shadow-lg p-8 max-w-3xl w-full text-center">
+    <h1 class="text-2xl md:text-3xl font-semibold mb-6">¡Estos son tus 4 objetos seleccionados!</h1>
+    <div id="selectedObjectsContainer" class="grid grid-cols-2 md:grid-cols-4 gap-6"></div>
+
+    <div class="mt-6 flex justify-center gap-4">
+      <button onclick="volver()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition duration-300">
+        Volver
+      </button>
+      <button onclick="continuarHistoria()" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition duration-300">
+        Continuar Historia
+      </button>
+    </div>
+  </div>
+
+<script>
+  // Recuperar los objetos del localStorage
+  const selectedObjects = JSON.parse(localStorage.getItem("selectedObjects")) || [];
+  const container = document.getElementById("selectedObjectsContainer");
+
+  if (selectedObjects.length === 0) {
+    container.innerHTML = "<p class='col-span-full text-gray-500'>No se seleccionaron objetos.</p>";
+  } else {
+    selectedObjects.forEach(obj => {
+      const div = document.createElement("div");
+      div.className = "bg-gray-50 rounded-lg shadow p-4 flex flex-col items-center justify-center";
+      
+      // Mostrar nombre del objeto
+      const name = document.createElement("p");
+      name.textContent = obj.name;
+      name.className = "font-medium mb-2 text-center";
+      
+      // Mostrar imagen del objeto
+      const img = document.createElement("img");
+      img.src = obj.img;
+      img.alt = obj.name;
+      img.className = "w-24 h-24 object-contain rounded";
+      
+      div.appendChild(img);
+      div.appendChild(name);
+      container.appendChild(div);
+    });
+  }
+
+  function volver() {
+    window.history.back();
+  }
+
+  function continuarHistoria() {
+    window.location.href = "historia.html"; // Página siguiente de la historia
+  }
+</script>
+
+</body>
+</html>

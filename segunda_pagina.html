@@ -16,12 +16,9 @@
       font-family: var(--font-base);
       height: 100%;
     }
-
-    
     .zoom-on-click {
       animation: zoomClick 0.2s ease-in-out;
     }
-
     @keyframes zoomClick {
       0% { transform: scale(1); }
       50% { transform: scale(1.1); }
@@ -32,138 +29,133 @@
 
 <body class="relative h-screen w-screen overflow-hidden">
 
-  
   <img src="freddy-arturo-fondo-de-pantalla-chevere.jpg" alt="Fondo" class="absolute top-0 left-0 w-full h-full object-cover z-0">
 
- 
   <div class="absolute top-5 left-1/2 transform -translate-x-1/2 z-20">
     <h1 class="text-white text-3xl font-semibold bg-black/50 px-6 py-3 rounded-lg shadow-md">
       Escoge 4 objetos para sobrevivir
     </h1>
   </div>
 
-  
   <div class="absolute inset-0 flex items-start justify-center pt-32 z-10">
     <div class="grid grid-cols-3 gap-6">
-
-      
+      <!-- Botones -->
       <div class="flex items-center gap-4">
         <button data-img="https://tse2.mm.bing.net/th/id/OIP.IvgySrsWkxKfGFHsW2p1dwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" class="btn w-40 h-24 bg-white shadow-lg border border-gray-300 rounded-md text-lg font-semibold hover:shadow-2xl transition duration-300">12 botellas con agua</button>
       </div>
-
       <div class="flex items-center gap-4">
         <button data-img="https://tse3.mm.bing.net/th/id/OIP.rRJfMGBNDHm2sgpCPbpE4QHaHa?w=960&h=960&rs=1&pid=ImgDetMain&o=7&rm=3" class="btn w-40 h-24 bg-white shadow-lg border border-gray-300 rounded-md text-lg font-semibold hover:shadow-2xl transition duration-300">Inflable para 5 personas</button>
       </div>
-
       <div class="flex items-center gap-4">
         <button data-img="https://th.bing.com/th/id/R.4a422881fbd407afc9352c24aaab2e53?rik=r0UoOTYR1QL3Ow&pid=ImgRaw&r=0" class="btn w-40 h-24 bg-white shadow-lg border border-gray-300 rounded-md text-lg font-semibold hover:shadow-2xl transition duration-300">Radio</button>
       </div>
-
       <div class="flex items-center gap-4">
         <button data-img="https://tse1.mm.bing.net/th/id/OIP.Nm6Vfs5oSOm9QpKfmQbFugHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" class="btn w-40 h-24 bg-white shadow-lg border border-gray-300 rounded-md text-lg font-semibold hover:shadow-2xl transition duration-300">Botiquín de primeros auxilios</button>
       </div>
-
       <div class="flex items-center gap-4">
         <button data-img="https://img.freepik.com/vector-premium/coleccion-dibujos-animados-ilustracion-sueter_488586-93.jpg" class="btn w-40 h-24 bg-white shadow-lg border border-gray-300 rounded-md text-lg font-semibold hover:shadow-2xl transition duration-300">Suéteres</button>
       </div>
-
       <div class="flex items-center gap-4">
         <button data-img="https://tse4.mm.bing.net/th/id/OIP.AibwFty_hzYTeP1A_L28VAHaE8?w=960&h=640&rs=1&pid=ImgDetMain&o=7&rm=3" class="btn w-40 h-24 bg-white shadow-lg border border-gray-300 rounded-md text-lg font-semibold hover:shadow-2xl transition duration-300">Spray antiinsectos</button>
       </div>
-
       <div class="flex items-center gap-4">
         <button data-img="https://th.bing.com/th/id/R.404c11e8d06111799eb61450b273366b?rik=7HMJm0ZRs8ukiA&pid=ImgRaw&r=0" class="btn w-40 h-24 bg-white shadow-lg border border-gray-300 rounded-md text-lg font-semibold hover:shadow-2xl transition duration-300">Un hacha</button>
       </div>
-
       <div class="flex items-center gap-4">
         <button data-img="https://tse1.mm.bing.net/th/id/OIP.-EWcl1VQec4PstPpaWsEdwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" class="btn w-40 h-24 bg-white shadow-lg border border-gray-300 rounded-md text-lg font-semibold hover:shadow-2xl transition duration-300">Maquillaje</button>
       </div>
-
       <div class="flex items-center gap-4">
         <button data-img="https://www.shutterstock.com/image-vector/linens-vector-laundry-600nw-723255199.jpg" class="btn w-40 h-24 bg-white shadow-lg border border-gray-300 rounded-md text-lg font-semibold hover:shadow-2xl transition duration-300">5 sábanas</button>
       </div>
-
       <div class="flex items-center gap-4">
         <button data-img="https://png.pngtree.com/png-clipart/20230913/original/pngtree-lantern-clipart-cartoon-image-of-a-lantern-vector-png-image_11078903.png" class="btn w-40 h-24 bg-white shadow-lg border border-gray-300 rounded-md text-lg font-semibold hover:shadow-2xl transition duration-300">Linterna</button>
       </div>
-
       <div class="flex items-center gap-4">
         <button data-img="https://tse3.mm.bing.net/th/id/OIP.YB8u7tTEfddY0BqSu4C5UwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" class="btn w-40 h-24 bg-white shadow-lg border border-gray-300 rounded-md text-lg font-semibold hover:shadow-2xl transition duration-300">Pelota de fútbol</button>
       </div>
-
     </div>
   </div>
 
-  
+  <!-- Timer -->
   <div class="absolute top-5 right-5 z-20 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-md shadow-lg text-black text-xl font-semibold">
     Tiempo restante: <span id="timer">00:30</span>
   </div>
 
-  
-<script>
-  
-  let time = 30;
-  const timerElement = document.getElementById("timer");
+  <!-- Continuar -->
+  <div class="absolute bottom-5 right-5 z-20">
+    <button id="continueBtn" disabled class="bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold py-3 px-6 rounded-lg shadow-lg transition duration-300">
+      Continuar
+    </button>
+  </div>
 
-  const countdown = setInterval(() => {
-    time--;
-    const minutes = String(Math.floor(time / 60)).padStart(2, "0");
-    const seconds = String(time % 60).padStart(2, "0");
-    timerElement.textContent = `${minutes}:${seconds}`;
+  <!-- Volver -->
+  <div class="absolute top-5 left-5 z-20">
+    <button onclick="history.back()" class="bg-gray-700 hover:bg-gray-800 text-white font-semibold text-lg py-2 px-5 rounded-lg shadow-md transition duration-300">
+      Volver
+    </button>
+  </div>
 
-    if (time <= 0) {
-      clearInterval(countdown);
-      timerElement.textContent = "00:00";
-      alert("¡Se acabó el tiempo!");
-    }
-  }, 1000);
-
-  
-  const buttons = document.querySelectorAll(".btn");
-
-  buttons.forEach(button => {
-    button.addEventListener("click", () => {
-    
-      button.classList.add("zoom-on-click");
-      setTimeout(() => {
-        button.classList.remove("zoom-on-click");
-      }, 200);
-
-      const container = button.parentElement;
-      let img = container.querySelector("img");
-
-      if (img) {
-       
-        img.remove();
-      } else {
-        
-        const imgUrl = button.getAttribute("data-img");
-        img = document.createElement("img");
-        img.src = imgUrl;
-        img.alt = "Objeto";
-        
-        img.className = "ml-4 w-16 h-16 object-contain rounded shadow-md";
-        container.appendChild(img);
+  <script>
+    // Timer
+    let time = 30;
+    const timerElement = document.getElementById("timer");
+    const countdown = setInterval(() => {
+      time--;
+      const minutes = String(Math.floor(time / 60)).padStart(2, "0");
+      const seconds = String(time % 60).padStart(2, "0");
+      timerElement.textContent = `${minutes}:${seconds}`;
+      if (time <= 0) {
+        clearInterval(countdown);
+        timerElement.textContent = "00:00";
+        alert("¡Se acabó el tiempo!");
       }
+    }, 1000);
+
+    // Selección de objetos
+    const buttons = document.querySelectorAll(".btn");
+    const continueBtn = document.getElementById("continueBtn");
+    let selectedObjects = [];
+
+    buttons.forEach(button => {
+      button.addEventListener("click", () => {
+        if (selectedObjects.length >= 4 && !button.classList.contains("selected")) return;
+
+        button.classList.add("zoom-on-click");
+        setTimeout(() => button.classList.remove("zoom-on-click"), 200);
+
+        const container = button.parentElement;
+        let img = container.querySelector("img");
+
+        if (img) {
+          // Deseleccionar
+          img.remove();
+          selectedObjects = selectedObjects.filter(obj => obj.name !== button.textContent);
+          button.classList.remove("selected");
+        } else {
+          // Seleccionar
+          const imgUrl = button.getAttribute("data-img");
+          img = document.createElement("img");
+          img.src = imgUrl;
+          img.alt = "Objeto";
+          img.className = "ml-4 w-16 h-16 object-contain rounded shadow-md";
+          container.appendChild(img);
+          button.classList.add("selected");
+          selectedObjects.push({ name: button.textContent, img: imgUrl });
+        }
+
+        // Guardar en localStorage
+        localStorage.setItem("selectedObjects", JSON.stringify(selectedObjects));
+
+        // Habilitar botón continuar si ya seleccionó 4
+        continueBtn.disabled = selectedObjects.length !== 4;
+      });
     });
-  });
-</script>
 
-<div class="absolute bottom-5 right-5 z-20">
-  <button class="bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold py-3 px-6 rounded-lg shadow-lg transition duration-300">
-    Continuar
-  </button>
-</div>
-
-<div class="absolute top-5 left-5 z-20">
-  <button onclick="history.back()" class="bg-gray-700 hover:bg-gray-800 text-white font-semibold text-lg py-2 px-5 rounded-lg shadow-md transition duration-300">
-    Volver
-  </button>
-</div>
+    // Continuar
+    continueBtn.addEventListener("click", () => {
+      window.location.href = "pagina-siguiente.html";
+    });
+  </script>
 
 </body>
 </html>
-
-
-
-

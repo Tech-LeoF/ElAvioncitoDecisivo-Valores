@@ -7,11 +7,14 @@
 </head>
 <body class="flex items-center justify-center h-screen bg-gray-100">
     <img class="w-full" src="Imgs/sorprendido-conmocionado-asustado-o-asombrado-emoji-emoticon-ojos-salvajes-que-salen_1303870-1163.avif" alt="">
-<div class="absolute bg-white shadow-lg rounded-xl p-6 text-center space-y-4">
-    <h1 class="text-2xl font-bold text-red-600 mb-4">El elegido ha sido...</h1>
-    <p id="resultado" class="text-xl text-gray-700"></p>
-    <button class = "px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition">Continuar</button>
-</div>
+    
+    <div class="absolute bg-white shadow-lg rounded-xl p-6 text-center space-y-4">
+        <h1 class="text-2xl font-bold text-red-600 mb-4">El elegido ha sido...</h1>
+        <p id="resultado" class="text-xl text-gray-700"></p>
+        <button id="continuarBtn" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+            Continuar
+        </button>
+    </div>
 
 <script>
     // Obtener parámetro de la URL
@@ -19,10 +22,15 @@
     const sacrificio = params.get("sacrificio");
 
     if (sacrificio) {
-    document.getElementById("resultado").textContent = sacrificio;
+        document.getElementById("resultado").textContent = sacrificio;
     } else {
-    document.getElementById("resultado").textContent = "Nadie fue elegido 😱";
+        document.getElementById("resultado").textContent = "¿?";
     }
+
+    // Botón redirige a historia2.html
+    document.getElementById("continuarBtn").addEventListener("click", () => {
+        window.location.href = "historia2.html";
+    });
 </script>
 </body>
 </html>

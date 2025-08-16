@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nueva Página</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-base: 'Poppins', sans-serif;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-base);
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body class="relative h-screen w-screen overflow-hidden">
+
+  
+  <img src="freddy-arturo-fondo-de-pantalla-chevere.jpg" alt="Fondo" class="absolute top-0 left-0 w-full h-full object-cover z-0">
+
+  
+<div class="absolute top-20 left-1/2 transform -translate-x-1/2 w-full max-w-6xl px-6 z-20">
+  <p class="bg-black/60 text-white text-lg md:text-xl font-medium p-6 rounded-lg shadow-lg text-center">
+    Tras una difícil deliberación, el grupo decide arriesgar a uno de sus miembros para que el avión pueda aterrizar sin problemas. Todos contienen la respiración mientras la decisión se lleva a cabo.
+
+Sin embargo, para sorpresa de todos, el sacrificio resultó innecesario: el avión logra aterrizar con éxito sin que nadie resultara herido. Las elecciones que hicieron durante toda la aventura, incluso la última arriesgada decisión, no sirvieron para nada.
+
+Finalmente, todos llegan a salvo y la tensión desaparece.
+  </p>
+</div>
+
+
+<div class="absolute bottom-5 right-5 z-20">
+  <button onclick="location.href='end.html'" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold text-lg py-3 px-6 rounded-lg shadow-lg transition duration-300">
+    Continuar
+  </button>
+</div>
+
+<div class="absolute top-5 left-5 z-20">
+  <button onclick="history.back()" class="bg-gray-700 hover:bg-gray-800 text-white font-semibold text-lg py-2 px-5 rounded-lg shadow-md transition duration-300">
+    Volver
+  </button>
+</div>
+
+</body>
+</html>

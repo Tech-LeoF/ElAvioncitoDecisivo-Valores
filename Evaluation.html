@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evaluación</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  body { font-family: 'Poppins', sans-serif; }
+</style>
+</head>
+<body class="h-screen bg-cover bg-center" style="background-image: url('https://media.istockphoto.com/id/1658918586/es/vector/interior-del-avi%C3%B3n-pasillo-del-asiento-del-avi%C3%B3n-dentro-del-avi%C3%B3n-de-cabina-vuelo-de-avi%C3%B3n.jpg?s=612x612&w=0&k=20&c=9Egzgq6PGI65rtuZaVwkZYr8b_PqWSV9eea2Ll82slM=');">
+
+  <div class="flex flex-col items-center justify-center h-full px-4">
+    <div class="bg-black/60 p-8 rounded-xl w-full max-w-lg text-white">
+      <h2 class="text-center text-2xl font-bold mb-6">Reflexiona sobre tus decisiones</h2>
+
+      <form onsubmit="event.preventDefault(); window.location.href='index.html';" class="space-y-4">
+        
+        <div>
+          <label class="block">
+            <p class="mb-2">¿Qué nivel de dificultad sentiste al tomar decisiones?</p>
+            <select class="w-full p-3 bg-blue-800 text-white rounded border border-gray-800">
+              <option value="">Muy fácil</option>
+              <option value="two">Fácil</option>
+              <option value="three">Moderada</option>
+              <option value="four">Difícil</option>
+              <option value="five">Muy difícil</option>
+            </select>
+          </label>
+        </div>
+
+        <div>
+          <label class="block">
+            <p class="mb-2">¿Qué decisión te resultó más difícil?</p>
+            <select class="w-full p-3 bg-blue-800 text-white rounded border border-gray-800">
+              <option value="">Elegir los 3 objetos</option>
+              <option value="two">Decidir quién debía salvarse</option>
+            </select>
+          </label>
+        </div>
+
+        <div>
+          <label class="block">
+            <p class="mb-2">¿Qué factores influyeron más en tus decisiones?</p>
+            <select class="w-full p-3 bg-blue-800 text-white rounded border border-gray-800">
+              <option value="">Emociones</option>
+              <option value="two">Tiempo</option>
+              <option value="three">Opciones interesantes</option>
+            </select>
+          </label>
+        </div>
+
+        <div>
+          <label class="block">
+            <p class="mb-2">¿Qué aprendiste sobre ti mismo al tomar decisiones en el juego?</p>
+            <select class="w-full p-3 bg-blue-800 text-white rounded border border-gray-800">
+              <option value="">Me gusta planificar antes de actuar</option>
+              <option value="two">Me cuesta tomar decisiones</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="bg-blue-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800 transition">Terminar</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</body>
+</html>
